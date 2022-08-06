@@ -20,6 +20,7 @@ jobs:
           mkdir protobufs
           protoc -I=$PROTO_DIR \ 
           --go_out=$PROTOBUF_DIR \ 
+          --go_grpc_out=$PROTOBUF_DIR \
           */**/*.proto          
         env:
           PROTOBUF_DIR: ./protobufs
