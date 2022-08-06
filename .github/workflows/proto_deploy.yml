@@ -18,10 +18,7 @@ jobs:
       - name: Build
         run: |
           mkdir protobufs
-          protoc -I=$PROTO_DIR \ 
-          --go_out=$PROTOBUF_DIR \ 
-          --go_grpc_out=$PROTOBUF_DIR \
-          */**/*.proto          
+          protoc -I=$PROTO_DIR --go_out=$PROTOBUF_DIR --go-grpc_out=$PROTOBUF_DIR */**/*.proto          
         env:
           PROTOBUF_DIR: ./protobufs
           PROTO_DIR: .
