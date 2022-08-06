@@ -1,6 +1,11 @@
 name: proto_deploy
 
-on: [push]
+on: 
+  push:
+    branches:
+      - master
+      - dev
+
 
 jobs:
   proto_deploy:
