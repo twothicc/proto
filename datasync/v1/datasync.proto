@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package datasync.v1;
 
-option go_package = "github.com/twothicc/protobuf/datasync/v1";
+option go_package = "datasync/v1";
 
 service DataSyncService {
     rpc HelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {}
