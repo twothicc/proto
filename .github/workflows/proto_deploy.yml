@@ -1,0 +1,37 @@
+name: proto_deploy
+
+on: [push]
+
+jobs:
+  proto_deploy:
+    name: build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+      - name: Installing protoc-gen-go
+        run: |
+          go get github.com/golang/protobuf/protoc-gen-go
+          go get google.golang.org/grpc/cmd/protoc-gen-go-grpc          
+      - name: Build
+        run: |
+          mkdir protobufs
+          protoc -I=$PROTO_DIR \ 
+          --go_out=$PROTOBUF_DIR \ 
+          */**/*.proto          
+        env:
+          PROTOBUF_DIR: ./protobufs
+          PROTO_DIR: .
+      - name: Deploy
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: './protobufs'
+          destination-github-username: 'twothicc'
+          destination-repository-name: 'protobuf'
+          user-email: chenenliuu@gmail.com
+          target-branch: ${{ github.ref_name }}
