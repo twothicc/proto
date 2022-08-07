@@ -4,7 +4,7 @@ package datasync.v1;
 
 option go_package = "datasync/v1";
 
-service DataSyncService {
+service HelloWorldService {
     rpc HelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {}
 }
 
