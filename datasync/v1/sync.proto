@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package datasync.v1;
+
+option go_package = "datasync/v1";
+
+service SyncService {
+    rpc Sync(SyncRequest) returns (SyncResponse) {}
+}
+
+message SyncRequest {
+    uint32 timestamp = 1;
+    string action = 2;
+    string schema = 3;
+    string table = 4;
+    repeated string pk = 5;
+    bytes old_data = 6;
+    bytes new_data = 7;
+}
+
+message SyncResponse {
+    string msg = 1;
+}
