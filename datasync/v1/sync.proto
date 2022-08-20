@@ -9,13 +9,14 @@ service SyncService {
 }
 
 message SyncRequest {
-    uint32 timestamp = 1;
-    string action = 2;
-    string schema = 3;
-    string table = 4;
-    repeated string pk = 5;
-    bytes old_data = 6;
-    bytes new_data = 7;
+    uint32 ctimestamp = 1;
+    uint32 mtimestamp = 2;
+    string action = 3;
+    string schema = 4;
+    string table = 5;
+    repeated string pk = 6;
+    bytes old_data = 7;
+    bytes new_data = 8;
 }
 
 message SyncResponse {
